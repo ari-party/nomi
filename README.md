@@ -15,6 +15,8 @@ Users can easily bypass Discord's built-in automod system with a single characte
 Nomi offers a straight forward approach to solving this.
 It checks if the bot's role is above the highest role of the member who sent a message. If it's above, then it will check the message for these bypassable characters and deletes it if found.
 
+![Nomi in action](https://github.com/ari-party/nomi/assets/49074962/873b34c0-cc42-4b39-b8c9-29bc1ae7dfa9)
+
 ## Installation
 
 1. Clone the repository `git clone https://github.com/ari-party/nomi.git` or [download a ZIP](https://github.com/ari-party/nomi/archive/refs/heads/main.zip).
