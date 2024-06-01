@@ -20,16 +20,20 @@ export async function handleEvent(message: Message): Promise<void> {
   if (result)
     try {
       await message.delete();
-
-      const reply = await message.channel.send(
-        `<@${message.author.id}>, the message you tried to send contained a blacklisted character (\`${result}\`) and was deleted.`,
-      );
-
-      if (reply)
-        setTimeout(async () => {
-          if (reply.deletable) await reply.delete();
-        }, 7_500);
     } catch (error) {
       console.error(`There was an error deleting message ${message.id}`, error);
     }
+
+  try {
+    const reply = await message.channel.send(
+      `<@${message.author.id}>, the message you tried to send contained a blacklisted character (\`${result}\`) and was deleted.`,
+    );
+
+    if (reply)
+      setTimeout(async () => {
+        if (reply.deletable) await reply.delete();
+      }, 7_500);
+  } catch (_) {
+    // don't do anything if the bot fails to reply, bot's permissions might not include send messages
+  }
 }
