@@ -1,5 +1,11 @@
 # Nomi
 
+[![License](https://img.shields.io/github/license/ari-party/nomi?style=for-the-badge)](./LICENSE)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Discord](https://img.shields.io/badge/Discord.js-%235865F2.svg?style=for-the-badge&logo=discord&logoColor=white)
+![Airbnb](https://img.shields.io/badge/Airbnb-%23ff5a5f.svg?style=for-the-badge&logo=Airbnb&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=for-the-badge&logo=eslint&logoColor=white)
+
 **no** - no\
  **m** - more\
    **i** - invisible (characters)
@@ -16,6 +22,8 @@ Nomi offers a straight forward approach to solving this.
 It checks if the bot's role is above the highest role of the member who sent a message. If it's above, then it will check the message for these bypassable characters and deletes it if found.
 
 ![Nomi in action](https://github.com/ari-party/nomi/assets/49074962/873b34c0-cc42-4b39-b8c9-29bc1ae7dfa9)
+
+If you wish for Nomi not to reply with these messages (as shown in the image above), simply don't include the send messages permission.
 
 ## Installation
 
