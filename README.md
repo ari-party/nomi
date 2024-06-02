@@ -27,22 +27,38 @@ If you wish for Nomi not to reply with these messages (as shown in the image abo
 
 ## Installation
 
+Create an application on the [developer portal](https://discord.com/developers/applications), generate a new bot token and copy it.
+
+### Docker
+
+Ensure you have [Docker](https://docs.docker.com/get-docker/) installed for this installation method.
+
+```bash
+# Pull the Docker image
+docker pull ghcr.io/ari-party/nomi:latest
+
+docker run -d --name nomi -e TOKEN="REPLACE_ME_WITH_BOT_TOKEN" ghcr.io/ari-party/nomi:latest
+# `-d detached`, it will run in the background
+# `--name nomi`, assign a name to prevent a random name
+# `-e TOKEN="..."`, add the TOKEN enviroment variable, keep the quotes when replacing
+```
+
+### Manual
+
 1. Clone the repository `git clone https://github.com/ari-party/nomi.git` or [download a ZIP](https://github.com/ari-party/nomi/archive/refs/heads/main.zip).
 
 2. Make sure the latest LTS version of [Node.js](https://nodejs.org/en/download) is installed alongside the latest version of npm.
 
 3. Install the dependencies with `npm install` or `pnpm install` if you are using [pnpm](https://pnpm.io/) (😎).
 
-4. Create an application on the [developer portal](https://discord.com/developers/applications) and generate a new bot token.
+4. Copy or rename the `.env.example` file to `.env` and open it with your preferred editor.
 
-5. Copy or rename the `.env.example` file to `.env` and open it with your preferred editor.
-
-6. Paste your bot token after `TOKEN=`.
+5. Paste your bot token after `TOKEN=`.
    (It would look something like `TOKEN=MTI...`)
 
-7. Start the bot with `npm run start` or `pnpm start`.
+6. Start the bot with `npm run start` or `pnpm start`.
 
-### Permissions
+## Bot permissions
 
 #### Required
 

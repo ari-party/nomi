@@ -5,6 +5,9 @@ import type { ClientEvents, Message } from 'discord.js';
 export const event: keyof ClientEvents = 'messageCreate';
 
 export async function handleEvent(message: Message): Promise<void> {
+  // don't bother if bot
+  if (message.author.bot) return;
+
   if (!message.guild || !message.member) return;
 
   const highestMemberRole = message.member.roles.highest.position;
@@ -17,23 +20,24 @@ export async function handleEvent(message: Message): Promise<void> {
 
   const result = hasInvisibleCharacters(message.content);
 
-  if (result)
+  if (result) {
     try {
       await message.delete();
     } catch (error) {
       console.error(`There was an error deleting message ${message.id}`, error);
     }
 
-  try {
-    const reply = await message.channel.send(
-      `<@${message.author.id}>, the message you tried to send contained a blacklisted character (\`${result}\`) and was deleted.`,
-    );
+    try {
+      const reply = await message.channel.send(
+        `<@${message.author.id}>, the message you tried to send contained a blacklisted character (\`${result}\`) and was deleted.`,
+      );
 
-    if (reply)
-      setTimeout(async () => {
-        if (reply.deletable) await reply.delete();
-      }, 7_500);
-  } catch (_) {
-    // don't do anything if the bot fails to reply, bot's permissions might not include send messages
+      if (reply)
+        setTimeout(async () => {
+          if (reply.deletable) await reply.delete();
+        }, 7_500);
+    } catch (_) {
+      // don't do anything if the bot fails to reply, bot's permissions might not include send messages
+    }
   }
 }
