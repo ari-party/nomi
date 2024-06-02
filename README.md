@@ -1,5 +1,4 @@
-![Nomi](https://github.com/ari-party/nomi/assets/49074962/f85eebb5-2789-485d-8878-401f1be5ad59)
-
+![Nomi](https://github.com/ari-party/nomi/assets/49074962/62d1cc6f-3471-4ce4-be0f-bc50acf8f8e3)
 
 [![License](https://img.shields.io/github/license/ari-party/nomi?style=for-the-badge)](./LICENSE)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
