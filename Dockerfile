@@ -1,11 +1,11 @@
-FROM node: 22-alpine
+FROM node:22-alpine
 
 WORKDIR /home/nomi
 
 RUN git pull https://github.com/ari-party/nomi.git
 
-RUN npm install
+RUN pnpm install
 
 COPY . .
 
-CMD ["npm", "run", "start"]
+CMD ["pnpm", "start"]
