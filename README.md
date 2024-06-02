@@ -26,6 +26,10 @@ It checks if the bot's role is above the highest role of the member who sent a m
 
 If you wish for Nomi not to reply with these messages (as shown in the image above), simply don't include the send messages permission.
 
+## Invite
+
+**Invite the hosted bot [here](https://discord.com/oauth2/authorize?client_id=1246583489541705769&permissions=11264&scope=bot).**
+
 ## Installation
 
 Create an application on the [developer portal](https://discord.com/developers/applications), generate a new bot token and copy it.
