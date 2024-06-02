@@ -1,6 +1,9 @@
 FROM node:22-alpine
 
-WORKDIR /home/nomi
+WORKDIR /nomi
+
+COPY package.json ./
+COPY pnpm-lock.yaml ./
 
 RUN npm install
 
