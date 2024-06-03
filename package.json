@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@types/klaw": "^3.0.6",
+    "@types/node": "^20.14.0",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
     "eslint": "^8.56.0",
@@ -36,4 +37,3 @@
     "klaw": "^4.1.0"
   }
 }
-
