@@ -1,11 +1,19 @@
-type NumberDictionary = Record<number, string>;
-
-const anywhere: NumberDictionary = {
+const dictionary: Record<number, string> = {
   173: 'SOFT HYPHEN',
+  1564: 'ARABIC LETTER MARK',
+  // 6158 'MONGOLIAN VOWEL SEPERATOR' is special and has own code below
+  8236: 'POP DIRECTIONAL FORMATTING',
+  8237: 'LEFT-TO-RIGHT OVERRIDE',
+  8238: 'RIGHT-TO-LEFT OVERRIDE',
+  8288: 'WORD JOINER',
   8289: 'FUNCTION APPLICATION',
   8290: 'INVISIBLE TIMES',
   8291: 'INVISIBLE SEPERATOR',
   8292: 'INVISIBLE PLUS',
+  8294: 'LEFT-TO-RIGHT ISOLATE',
+  8295: 'RIGHT-TO-LEFT ISOLATE',
+  8296: 'FIRST STRONG ISOLATE',
+  8297: 'POP DIRECTIONAL ISOLATE',
   // tag characters (U+E0020 to U+E007F) for some reason have this character when sent
   // (private use character)
   56128: 'HIGH SURROGATES',
@@ -17,20 +25,6 @@ const anywhere: NumberDictionary = {
   8302: 'NATIONAL DIGIT SHAPES',
   8303: 'NOMINAL DIGIT SHAPES',
   917505: 'LANGUAGE TAG',
-};
-
-// characters will be flagged if they are not the prefix or suffix
-const notPrefixOrSuffix: NumberDictionary = {
-  1564: 'ARABIC LETTER MARK',
-  // 6158 'MONGOLIAN VOWEL SEPERATOR' is special and has own code below
-  8236: 'POP DIRECTIONAL FORMATTING',
-  8237: 'LEFT-TO-RIGHT OVERRIDE',
-  8238: 'RIGHT-TO-LEFT OVERRIDE',
-  8288: 'WORD JOINER',
-  8294: 'LEFT-TO-RIGHT ISOLATE',
-  8295: 'RIGHT-TO-LEFT ISOLATE',
-  8296: 'FIRST STRONG ISOLATE',
-  8297: 'POP DIRECTIONAL ISOLATE',
 };
 
 export default function hasInvisibleCharacters(text: string): string | false {
@@ -47,11 +41,9 @@ export default function hasInvisibleCharacters(text: string): string | false {
       if (
         characterIndex !== 0 &&
         characterIndex !== word.length - 1 &&
-        notPrefixOrSuffix[codePoint]
+        dictionary[codePoint]
       )
-        return notPrefixOrSuffix[codePoint];
-
-      if (anywhere[codePoint]) return anywhere[codePoint];
+        return dictionary[codePoint];
 
       // U+180E (6158) is only allowed before U+1820 (6176) and U+1821 (6177)
       if (codePoint === 6158) {
