@@ -1,6 +1,6 @@
 {
   "name": "nomi",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Astrid <git@astrid.email>",
   "license": "MIT",
   "type": "module",
@@ -34,6 +34,7 @@
   "dependencies": {
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.4",
+    "invisible-character-detector": "^1.0.0",
     "klaw": "^4.1.0"
   }
 }

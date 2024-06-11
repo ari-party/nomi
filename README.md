@@ -13,6 +13,8 @@
 
 A zero-config Discord bot to prevent users from bypassing automod (bots).
 
+Nomi uses [invisible-character-detector](https://github.com/ari-party/invisible-character-detector) in the back-end.
+
 ## Why?
 
 Users can easily bypass Discord's built-in automod system with a single character, such as a [soft hyphen](https://unicode-explorer.com/c/00AD), and there are 21 more characters that can be abused.

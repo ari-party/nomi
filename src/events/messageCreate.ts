@@ -1,6 +1,5 @@
-import hasInvisibleCharacters from '../utils/hasInvisibleCharacters';
-
 import type { ClientEvents, Message } from 'discord.js';
+import hasInvisibleCharacters from 'invisible-character-detector';
 
 export const event: keyof ClientEvents = 'messageCreate';
 
