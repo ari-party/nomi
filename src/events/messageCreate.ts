@@ -1,5 +1,6 @@
-import type { ClientEvents, Message } from 'discord.js';
 import hasInvisibleCharacters from 'invisible-character-detector';
+
+import type { ClientEvents, Message } from 'discord.js';
 
 export const event: keyof ClientEvents = 'messageCreate';
 
@@ -28,7 +29,7 @@ export async function handleEvent(message: Message): Promise<void> {
 
     try {
       const reply = await message.channel.send(
-        `<@${message.author.id}>, the message you tried to send contained a blacklisted character (\`${result}\`) and was deleted.`,
+        `<@${message.author.id}>, the message you tried to send contained a blacklisted character (\`${result[0]}\`) and was deleted.`,
       );
 
       if (reply)
