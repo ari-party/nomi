@@ -15,8 +15,8 @@ importers:
         specifier: ^16.4.4
         version: 16.4.4
       invisible-character-detector:
-        specifier: ^1.0.1
-        version: 1.0.1
+        specifier: ^1.0.2
+        version: 1.0.2
       klaw:
         specifier: ^4.1.0
         version: 4.1.0
@@ -823,8 +823,8 @@ packages:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
     engines: {node: '>= 0.4'}
 
-  invisible-character-detector@1.0.1:
-    resolution: {integrity: sha512-6BJgxeZ8LWbA9jSv/fuu8jOlypdgGy1FW2BUfC/CvKIJXrMuYgQ25aOwjWVJ/omz+A5weEjxiPrwvJ9tQg3xow==}
+  invisible-character-detector@1.0.2:
+    resolution: {integrity: sha512-n2fBhe36iIPv7SUXuFsfZay2I2B07xXBGQOz6AZLtnWmSrdQUyBN4ub1H+mgywH4vU5H1WmD0enfYX/qnF36Og==}
     hasBin: true
 
   is-array-buffer@3.0.4:
@@ -2163,7 +2163,7 @@ snapshots:
       hasown: 2.0.1
       side-channel: 1.0.5
 
-  invisible-character-detector@1.0.1: {}
+  invisible-character-detector@1.0.2: {}
 
   is-array-buffer@3.0.4:
     dependencies:
