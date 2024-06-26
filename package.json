@@ -1,6 +1,6 @@
 {
   "name": "nomi",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "author": "Astrid <git@astrid.email>",
   "license": "MIT",
   "type": "module",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@types/klaw": "^3.0.6",
-    "@types/node": "^20.14.8",
+    "@types/node": "^20.14.9",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.0",
@@ -34,7 +34,7 @@
   "dependencies": {
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
-    "invisible-character-detector": "^2.0.0",
+    "invisible-character-detector": "^2.0.1",
     "klaw": "^4.1.0"
   }
 }
