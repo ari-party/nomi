@@ -27,7 +27,7 @@ for await (const file of klaw('src/events')) {
     os.platform() === 'win32' ? `file://${file.path}` : file.path
   );
 
-  client.on(module.event as unknown as string, (...args) =>
+  client.on(module.event as unknown as string, (...args: unknown[]) =>
     module.handleEvent(...args),
   );
 
