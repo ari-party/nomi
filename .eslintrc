@@ -26,7 +26,11 @@
       }
     }
   },
+  "ignorePatterns": [
+    "dist"
+  ],
   "rules": {
+    "no-await-in-loop": "off",
     "prettier/prettier": "warn",
     "no-console": "off",
     "consistent-return": "off",
@@ -78,13 +82,38 @@
     "@typescript-eslint/consistent-type-definitions": "error",
     "@typescript-eslint/consistent-indexed-object-style": "error",
     "@typescript-eslint/consistent-generic-constructors": "warn",
+    "import/consistent-type-specifier-style": [
+      "error",
+      "prefer-top-level"
+    ],
     "@typescript-eslint/consistent-type-assertions": [
       "error",
       {
         "assertionStyle": "as",
         "objectLiteralTypeAssertions": "allow"
       }
-    ]
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "args": "all",
+        "argsIgnorePattern": "^_",
+        "caughtErrors": "all",
+        "caughtErrorsIgnorePattern": "^_",
+        "destructuredArrayIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          "./*",
+          "../*"
+        ]
+      }
+    ],
+    "import/prefer-default-export": "off"
   }
 }
-

@@ -1,26 +1,29 @@
-import hasInvisibleCharacters from 'invisible-character-detector';
+import { findInvisibleCharacters } from 'invisible-character-detector';
 
-import type { ClientEvents, Message } from 'discord.js';
+import { env } from '@/env';
 
-export const event: keyof ClientEvents = 'messageCreate';
+import type { ClientEvents } from 'discord.js';
 
-export async function handleEvent(message: Message): Promise<void> {
-  // don't bother if bot
+export const event = 'messageCreate' as const satisfies keyof ClientEvents;
+
+export const handleEvent: (
+  ...args: ClientEvents[typeof event]
+) => unknown = async (message) => {
+  if (!message.inGuild()) return;
   if (message.author.bot) return;
-
-  if (!message.guild || !message.member) return;
+  if (!message.content) return;
+  if (!message.member) return;
 
   const highestMemberRole = message.member.roles.highest.position;
   const myHighestRole = message.guild.roles.botRoleFor(
     message.client.user,
   )?.position;
 
-  // the member who sent this has a role that is higher than the bot's, so ignore it
+  // the member who sent this has a role that is higher than the bot
   if (highestMemberRole > myHighestRole!) return;
 
-  const result = hasInvisibleCharacters(message.content);
-
-  if (result) {
+  const detections = findInvisibleCharacters(message.content);
+  if (detections.length) {
     try {
       await message.delete();
     } catch (error) {
@@ -29,15 +32,16 @@ export async function handleEvent(message: Message): Promise<void> {
 
     try {
       const reply = await message.channel.send(
-        `<@${message.author.id}>, the message you tried to send contained a blacklisted character (\`${result[0]}\`) and was deleted.`,
+        `<@${message.author.id}>, the message you tried to send contained a blacklisted character (\`${detections[0].runename}\`) and was deleted.`,
       );
 
       if (reply)
         setTimeout(async () => {
           if (reply.deletable) await reply.delete();
-        }, 7_500);
+        }, env.DELETE_TIME);
     } catch (_) {
       // don't do anything if the bot fails to reply, bot's permissions might not include send messages
+      /* empty */
     }
   }
-}
+};

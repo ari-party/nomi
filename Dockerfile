@@ -1,14 +1,27 @@
-FROM node:22-alpine
+# Build layer
+FROM node:22-alpine AS build
 
-RUN npm install -g pnpm
+RUN corepack enable && corepack prepare pnpm@9.15.4 --activate
 
-WORKDIR /nomi
+COPY . /build
+WORKDIR /build
 
 COPY package.json ./
 COPY pnpm-lock.yaml ./
 
-RUN pnpm install
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store pnpm fetch --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store pnpm install --frozen-lockfile
 
-COPY . .
+RUN pnpm run build
 
-CMD ["pnpm", "start"]
+RUN pnpm prune --prod
+
+# Package layer
+FROM node:22-alpine AS package
+
+WORKDIR /bot
+
+COPY --from=build /build/dist dist
+COPY --from=build /build/node_modules node_modules
+
+CMD ["node", "dist/index.js"]

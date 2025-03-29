@@ -1,15 +1,14 @@
-import 'dotenv/config';
-
-import os from 'node:os';
-
-import Discord from 'discord.js';
+import { Client, GatewayIntentBits } from 'discord.js';
 import klaw from 'klaw';
 
-const client = new Discord.Client({
+import { env } from '@/env';
+import { importPath } from '@utils/importPath';
+
+const client = new Client({
   intents: [
-    Discord.GatewayIntentBits.Guilds,
-    Discord.GatewayIntentBits.GuildMessages,
-    Discord.GatewayIntentBits.MessageContent,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
   ],
 });
 
@@ -17,21 +16,17 @@ client.on('ready', async () => {
   console.log('Nomi is ready to moderate!');
 });
 
-for await (const file of klaw('src/events')) {
+for await (const file of klaw('dist/events')) {
   if (!file.path.endsWith('.ts')) continue;
 
   const module: {
     event: Event;
     handleEvent: (...args: unknown[]) => Promise<void>;
-  } = await import(
-    os.platform() === 'win32' ? `file://${file.path}` : file.path
-  );
+  } = await import(importPath(file.path));
 
   client.on(module.event as unknown as string, (...args: unknown[]) =>
     module.handleEvent(...args),
   );
-
-  console.log(`Added ${module.event} event listener`);
 }
 
-client.login(process.env.TOKEN as string);
+client.login(env.TOKEN);

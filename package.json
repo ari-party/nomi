@@ -1,6 +1,6 @@
 {
   "name": "nomi",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "author": "Astrid <git@astrid.email>",
   "license": "MIT",
   "type": "module",
@@ -14,27 +14,31 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier . -w",
     "fix": "npm run lint:fix && npm run format",
-    "start": "tsx src/index.ts"
+    "build": "tsup src --format esm",
+    "dev": "rimraf dist && npm run build && env-cmd -- node dist/index.js"
   },
   "devDependencies": {
     "@types/klaw": "^3.0.6",
-    "@types/node": "^20.14.15",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^8.57.0",
+    "@types/node": "^22.13.14",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-import-resolver-typescript": "^3.6.1",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-prettier": "^5.2.1",
-    "prettier": "^3.3.3",
-    "tsx": "^4.17.0",
-    "typescript": "^5.5.4"
+    "eslint-import-resolver-typescript": "^3.10.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.5",
+    "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
   },
   "dependencies": {
-    "discord.js": "^14.15.3",
-    "dotenv": "^16.4.5",
-    "invisible-character-detector": "^2.0.2",
-    "klaw": "^4.1.0"
+    "@t3-oss/env-core": "^0.12.0",
+    "discord.js": "^14.18.0",
+    "invisible-character-detector": "^3.0.0",
+    "klaw": "^4.1.0",
+    "zod": "^3.24.2"
   }
 }

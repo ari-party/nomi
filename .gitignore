@@ -9,8 +9,11 @@
 # debug
 npm-debug.log*
 
-# env files
-.env
+# secrets
+.env*
 
 # package managers
 package-lock.json
+
+# production
+/dist
